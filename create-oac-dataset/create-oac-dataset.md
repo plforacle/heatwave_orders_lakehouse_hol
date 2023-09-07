@@ -16,7 +16,7 @@ _Estimated Time:_ 10 minutes
 In this lab, you will be guided through the following tasks:
 
 - Create a dataset on OAC using the store_orders table
-- Create a dataset on OAC using the delivery_orders and DELIVERY_VENDORS tables
+- Create a dataset on OAC using the delivery\_orders and DELIVERY\_VENDORS tables
 
 ### Prerequisites
 

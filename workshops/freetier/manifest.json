@@ -65,12 +65,17 @@
         },
 
         {
-          "title": "Lab 11: Develop MySQL HeatWave Apps with LAMP",
-          "filename": "../../develop/develop.md"
+          "title": "Lab 11: Develop MySQL HeatWave and Lakehouse Apps with LAMP",
+          "filename": "../../develop-lakehouse/develop-lakehouse.md"
         }, 
 
         {
-          "title": "Lab 12: Stop OCI Services",
+          "title": "Lab 12: (Bonus)  Develop MySQL HeatWave Apps with Oracle APEX",
+          "filename": "../../apex-heatwave/apex-heatwave.md"
+        }, 
+        
+        {
+          "title": "Lab 13: Stop OCI Services",
           "filename": "../../stop-services/stop-services.md"
         },
 

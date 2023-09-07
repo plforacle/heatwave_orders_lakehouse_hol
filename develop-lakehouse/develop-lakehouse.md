@@ -205,6 +205,39 @@ In this lab, you will be guided through the following tasks:
 
     ![Application output](./images/order-app-output.png " order app output")
 
+## Task 4: Create Google Chart Application to display Lakehouse data
+
+1. Go to the development folder
+
+    ```bash
+    <copy>cd /var/www/html</copy>
+    ```
+
+2. Create mydbchart.php file
+
+    ```bash
+    <copy>sudo nano mydbchart.php</copy>
+    ```
+
+3. Click on this link to **Download file [orders\_lakehouse\_dbchart.phpp](files/orders_lakehouse_dbchart.php)**  to your local machine
+4. Open orders\_lakehouse\_dbchart.phpp from your local machine with notepad or VSCODE
+
+5. copy all of the content of the orders\_lakehouse\_dbchart.phpp file from your local machine to the LAMP server  mydbchart.php 
+    - add the content to the mydbchart.php file that you are  creating
+
+        ![dbchart select all.](./images/dbchart-select-all.png "dbchart select all ")
+    - Remember to replace the IP daadress,username, and password (lines 2 and 96 )
+        - $con = mysqli_connect('30.0...','admin','Welcome#123','airportdb');
+        - $link = mysqli_connect('30.0...','admin','Welcome#123','airportdb');
+        ![dbchart copied](./images/dbchart-copied.png "dbchart copied ")
+    - Save the mydbchart.php 
+
+6. From your local  machine connect to mydbchart.php
+
+    Example: http://129.213.167..../mydbchart.php
+
+    ![mydbchart out](./images/mydbchart-out.png "mydbchart out ")
+
 ## Learn More
 
 [https://dev.mysql.com/doc/heatwave/en/mys-hw-lakehouse.html](https://dev.mysql.com/doc/heatwave/en/mys-hw-lakehouse.html)
