@@ -238,6 +238,88 @@ In this lab, you will be guided through the following tasks:
 
     ![mydbchart out](./images/mydbchart-out.png "mydbchart out ")
 
+## Task 4: Create Customer Analytic Application
+
+1. Go to the development folder
+
+    ```bash
+    <copy>cd /var/www/html</copy>
+    ```
+
+2. Get Eureka Application files  from Storage Object Stogage
+
+    ```bash
+    <copy>sudo wget  https://objectstorage.us-ashburn-1.oraclecloud.com/p/RH22M6GFa2-UEFprLKU7dTveyJAsfbFgCFVXXtR_AxnY4IyU4mSfe29pr-kqt-Vv/n/mysqlpm/b/mysql_customer_orders/o/orders_web.zip</copy>
+    ```
+
+3. Unnzip orders_web.zip file 
+
+    ```bash
+    <copy>sudo unzip orders_web.zip </copy>
+    ```
+
+4. Open the config.php file 
+
+    ```bash
+    <copy>sudo nano orders_web/config.php </copy>
+    ```
+
+    Change config.php by replacing the mysql\_customer\_orders schema 'localhost' with heatwave-db IP address,username, and password;
+
+    - Save the orders_web/config.php
+    ![MDS](./images/eurekaweb-config.png " ")
+
+## Task 5: Run the Marketing Analytic Application
+
+1. From your local machine connect to heatwave-client IP Address/orders_web/login.php 
+
+    Example: http://999.999.999/orders_web/login.php
+
+2. Login with the following information
+
+    a. username: 
+
+    ```bash
+    <copy>plf </copy>
+    ```
+
+    b. password:
+
+    ```bash
+    <copy>hello123</copy>
+
+    ```
+
+    ![MDS](./images/login-page.png "login-page ")
+
+3. From the Welcome Page click the "View Account Activity" button
+
+    ![MDS](./images/welcome.png "welcome ")
+
+4. From the Items purchased Page click the "Loyalty Reward Promotion" button
+
+    ![MDS](./images/promotion-activity.png "promotion activity ")
+
+5. From the Eureka Promotions Page click the "Accept" button
+
+    ![MDS](./images/eureka-promotion.png "eureka promotion")
+
+6. From the Eureka Promotion Coupons  Page click the "Shop" button
+
+    ![MDS](./images/shop.png "shop")
+
+7. From the Promotion Shop  Page select Items to purchase and click the "Submitt" button
+
+    ![MDS](./images/promotion-shop.png "promotion shop")
+
+8. From the Items Purchase Page   click the "Continue" button
+
+    ![MDS](./images/items-purchased.png "items purchased")
+
+9. From the Thank You  Page   click the "Signout" button
+
+    ![MDS](./images/thankyou.png "thank you")
+
 ## Learn More
 
 [https://dev.mysql.com/doc/heatwave/en/mys-hw-lakehouse.html](https://dev.mysql.com/doc/heatwave/en/mys-hw-lakehouse.html)
