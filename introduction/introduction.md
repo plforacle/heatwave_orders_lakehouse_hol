@@ -2,44 +2,38 @@
 
 ## About this Workshop
 
-MySQL HeatWave is a fully managed database service powered by the HeatWave in-memory query accelerator. It’s the only cloud service that combines transactions, real-time analytics across data warehouses and data lakes, and machine learning in one MySQL Database—without the complexity, latency, risks, and cost of ETL duplication. It’s available on OCI, AWS, and Azure.
+MySQL HeatWave is a fully managed database service powered by the HeatWave in-memory query accelerator. It’s the only cloud service that combines transactions, real-time analytics across data warehouses and data lakes, machine learning, and lakehouse in one MySQL Database—without the complexity, latency, risks, and cost of ETL duplication. It’s available on OCI, AWS, and Azure.
 
-MySQL HeatWave includes MySQL HeatWave Lakehouse, letting users query hundreds of terabytes of data in object storage—in a variety of file formats, such as CSV, Parquet, and Aurora/Redshift export files from other databases. Customers can query transactional data in MySQL databases, data in various formats in object storage, or a combination of both using standard MySQL commands. Querying data in object storage is as fast as querying data inside the database.
+In this workshop, you will learn how to create a MySQL HeatWave Cluster, connect to the cluster using MySQL Shell, run queries on HeatWave, and create LAMP applications.
 
-To best understand the capabilities and ease of use of our managed service, we
-will walk you through a deployment scenario that is uniquely possible with MySQL
-HeatWave Lakehouse. The deployment goals are:
+Overall this workshop will show you how easy it is to create and manage MySQL HeatWave and how MySQL HeatWave enables you to make informed business-critical decisions with real-time insights.
 
-1. Walk you through the steps needed to load data from Object Storage to MySQL HeatWave.
-2. Show how MySQL HeatWave Lakehouse enables you to perform analytics on top of your object storage data without having to move data into the MySQL database.
-3. Show how to run queries on data coming from MySQL InnoDB storage loaded into HeatWave and data loaded from object storage into HeatWave all using standard MySQL syntax and familiar querying commands.
-
-_Estimated Time:_ 3 hours
+_Estimated Time:_ 1 hours
 
 ### About Product/Technology
 
+MySQL HeatWave is a massively parallel, high performance, in-memory query accelerator for Oracle MySQL Database Service that accelerates MySQL performance by orders of magnitude for analytics and mixed workloads. It is the only service that enables customers to run OLTP and OLAP workloads directly from their MySQL database without the need of ETL process. MySQL Autopilot uses advanced machine-learning techniques to automates the database lifecycle operations including provisioning, data loading, query processing, and error handling. This minimizes manual administrative work and further improves HeatWave’s usability, performance, and scalability. MySQL HeatWave is also integrated with other Oracle Cloud services such as Data Integration Service and Oracle Analytics Cloud to provide a seamless end-to-end integration.
 
-MySQL HeatWave enables users to process and query hundreds of terabytes of data in object storage—in a variety of file formats, such as CSV, Parquet, and Aurora/Redshift export files. The data remains in the object store and customers can query and analyse it with standard SQL syntax. With this capability, MySQL HeatWave provides one service for transaction processing, analytics across data warehouses and data lakes, and machine learning—without the need for complex ETL across cloud services.
+#### MySQL HeatWave One Database for OLTP, OLAP, ML & Lakehouse 
 
-MySQL HeatWave Lakehouse is 17X faster than Snowflake and 6X faster than Amazon Redshift. Loading data into MySQL HeatWave Lakehouse is also significantly faster.
 
-#### MySQL HeatWave Lakehouse, lets users process and query hundreds of terabytes of data in the object store
-
-  ![lakehouse diagram](./images/mysql-heatwave-lakehouse.png "MySQL HeatWave Lakehouse")
+  ![lakehouse diagram](./images/mysql-heatwave-intro.png "MySQL HeatWave Lakehouse")
 
 ### Objectives
 
 In this lab, you will be guided through the following steps:
 
-- Create MySQL Database for HeatWave DB System with Compartment and VCN
+- Create MySQL Database for HeatWave (DB System) instance
+- Create SSH Key on Oracle Cloud Infrastructure Cloud Shell
+- Setup Compute instance
+- Connect to DB System using MySQL Shell through Compute Instance and Cloud Shell
+- Create and Load sample database in MySQL Database
 - Add HeatWave cluster to DB System
-- Connect to MySQL HeatWave DB
-- Run Autopilot
-- Load data from OCI Object Store
-- Run queries
-- Load additional data
-- Use Oracle Analytics Cloud to analyze Lakehouse data
-- Build HeatWave ML with SQL
+- Load sample data to HeatWave Cluster
+- Run queries in HeatWave and MySQL and see the performance improvement in HeatWave!
+- Create LAMP test application
+- Stop OCI services
+
 
 ### Prerequisites
 
