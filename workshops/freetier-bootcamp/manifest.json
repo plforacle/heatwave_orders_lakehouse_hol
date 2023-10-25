@@ -33,9 +33,15 @@
           "title": "Lab 4: Load data into HeatWave Cluster and test",
           "filename": "../../load-db-heatwave-cluster/load-db-heatwave-cluster.md"
         },
+        
         {
           "title": "Lab 5: Develop MySQL HeatWave App with LAMP",
           "filename": "../../develop/develop.md"
+        },
+
+        {
+          "title": "Lab 6: Stop OCI Services",
+          "filename": "../../stop-services/stop-services.md"
         },
 
         {

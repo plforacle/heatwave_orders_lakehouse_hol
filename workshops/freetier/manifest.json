@@ -1,5 +1,5 @@
 {
-  "workshoptitle": "Analyze data at scale in object storage with MySQL HeatWave Lakehouse",
+  "workshoptitle": "Build MySQL HeatWave OLTP, OLAP, Lakehouse, and AUTOML",
     "help": "livelabs-help-oci_us@oracle.com",
     "tutorials": [
         {
@@ -23,59 +23,70 @@
           "title": "Lab 2: Create Compute with MySQL Shell",
           "filename": "../../create-compute-with-mysqlsh/create-compute-with-mysqlsh.md"
         },
-                        
-        {
-          "title": "Lab 3: Upload data to Object Storage for HeatWave Lakehouse",
-          "filename": "../../create-lakehouse-files/create-lakehouse-files.md"  
-        },
+
 
         {
-          "title": "Lab 4: Add HeatWave Cluster to the DB sytem",
+          "title": "Lab 3: Add HeatWave Cluster to the DB sytem",
           "filename": "../../add-heatwave-cluster/add-heatwave-cluster.md"
         },
+                
         {
-          "title": "Lab 5: Create Oracle Analytics Cloud Instance",
-          "filename": "../../create-oac-instance/create-oac-instance.md"  
-        },
-
-        
-        {
-          "title": "Lab 6: Load data into HeatWave Cluster ",
+          "title": "Lab 4: Load data into HeatWave Cluster ",
           "filename": "../../load-db-heatwave-cluster/load-db-heatwave-cluster.md"
         },
 
         {
-          "title": "Lab 7: Load CSV data from OCI Object Store",
+          "title": "Lab 5: Develop MySQL HeatWave App with LAMP",
+          "filename": "../../develop/develop.md"
+        },
+             
+        {
+          "title": "Lab 6: (Bonus) Upload data to Object Storage for HeatWave Lakehouse",
+          "filename": "../../create-lakehouse-files/create-lakehouse-files.md"  
+        },
+
+        {
+          "title": "Lab 7: (Bonus) Load CSV data from OCI Object Store",
           "filename": "../../load-csv-data/load-csv-data.md"  
         },
 
         {
-          "title": "Lab 8: Load Parquet format data directly from Object Store ",
+          "title": "Lab 8: (Bonus) Load Parquet format data directly from Object Store ",
           "filename": "../../load-parquet-data/load-parquet-data.md"
         },
 
         {
-          "title": "Lab 9: Create datasets in Oracle Analytics Cloud ",
+          "title": "Lab 9: (Bonus) Create Oracle Analytics Cloud Instance",
+          "filename": "../../create-oac-instance/create-oac-instance.md"  
+        },
+           
+        {
+          "title": "Lab 10: (Bonus) Create datasets in Oracle Analytics Cloud ",
           "filename": "../../create-oac-dataset/create-oac-dataset.md"
         },
 
         {
-          "title": "Lab 10: Build a real-time dashboard in Oracle Analytics Cloud with MySQL HeatWave ",
+          "title": "Lab 11: (Bonus) Build a real-time dashboard in Oracle Analytics Cloud with MySQL HeatWave ",
           "filename": "../../visualize-oac/visualize-oac.md"
         },
 
         {
-          "title": "Lab 11: Develop MySQL HeatWave and Lakehouse Apps with LAMP",
+          "title": "Lab 12: (Bonus) Create and Use HeatWave AutoML Model ",
+          "filename": "../../do-heatwave-ml/do-heatwave-ml.md"
+        }, 
+
+        {
+          "title": "Lab 13: (Bonus) Develop MySQL HeatWave and Lakehouse Apps with LAMP",
           "filename": "../../develop-lakehouse/develop-lakehouse.md"
         }, 
 
         {
-          "title": "Lab 12: (Bonus)  Develop MySQL HeatWave Apps with Oracle APEX",
+          "title": "Lab 14: (Bonus)  Develop MySQL HeatWave Apps with Oracle APEX",
           "filename": "../../apex-heatwave/apex-heatwave.md"
         }, 
         
         {
-          "title": "Lab 13: Stop OCI Services",
+          "title": "Lab 15: Stop OCI Services",
           "filename": "../../stop-services/stop-services.md"
         },
 
