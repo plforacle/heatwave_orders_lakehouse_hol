@@ -71,22 +71,16 @@
         },
 
         {
-          "title": "Lab 12: (Bonus) Create and Use HeatWave AutoML Model ",
-          "filename": "../../do-heatwave-ml/do-heatwave-ml.md"
-        }, 
-
-        {
-          "title": "Lab 13: (Bonus) Develop MySQL HeatWave and Lakehouse Apps with LAMP",
+          "title": "Lab 12: (Bonus) Develop MySQL HeatWave and Lakehouse Apps with LAMP",
           "filename": "../../develop-lakehouse/develop-lakehouse.md"
         }, 
-
         {
-          "title": "Lab 14: (Bonus)  Develop MySQL HeatWave Apps with Oracle APEX",
+          "title": "Lab 13: (Bonus)  Develop MySQL HeatWave Apps with Oracle APEX",
           "filename": "../../apex-heatwave/apex-heatwave.md"
         }, 
         
         {
-          "title": "Lab 15: Stop OCI Services",
+          "title": "Lab 14: Stop OCI Services",
           "filename": "../../stop-services/stop-services.md"
         },
 

@@ -14,7 +14,7 @@ A set of files have been created for you to use in this workshop. You will creat
 
 - An Oracle Trial or Paid Cloud Account
 - Some Experience with MySQL Shell
-- Completed Lab 2
+- Completed Lab 5
 
 ## Task 1: Download and unzip  Sample files
 

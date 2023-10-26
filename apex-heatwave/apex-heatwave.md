@@ -8,6 +8,11 @@ The Oracle Database Development Tools team launched the Database Tools service i
 
 Using APEX, developers can quickly develop and deploy compelling apps that solve real problems and provide immediate value. You don't need to be an expert in a vast array of technologies to deliver sophisticated solutions. Focus on solving the problem and let APEX take care of the rest.[https://apex.oracle.com/en/platform/why-oracle-apex/](https://apex.oracle.com/en/platform/why-oracle-apex/)
 
+### Prerequisites
+
+- An Oracle Trial or Paid Cloud Account
+- Completed Lab 3 Task 1
+
 **Tasks Guide** 
 [https://medium.com/oracledevs/get-insight-on-mysql-data-using-apex-22-1-7fe613c76ca5e](https://medium.com/oracledevs/get-insight-on-mysql-data-using-apex-22-1-7fe613c76ca5)
 

@@ -22,7 +22,7 @@ In this lab, you will be guided through the following tasks:
 
 - An Oracle Trial or Paid Cloud Account
 - Some Experience with MySQL Shell
-- Completed Lab 8
+- Completed Lab 9
 
 ## Task 1: Create Connection from HeatWave DB to OAC
 

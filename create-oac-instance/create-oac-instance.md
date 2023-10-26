@@ -21,7 +21,7 @@ In this lab, you will be guided through the following tasks:
 
 - An Oracle Trial or Paid Cloud Account
 - Some Experience with MySQL Shell
-- Completed Lab 4
+- Completed Lab 8
 
 ## Task 1: Create an Oracle Analytics Cloud Instance
 

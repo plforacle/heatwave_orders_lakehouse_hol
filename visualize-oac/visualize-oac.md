@@ -22,7 +22,7 @@ In this lab, you will be guided through the following tasks:
 
 - An Oracle Trial or Paid Cloud Account
 - Some Experience with MySQL Shell
-- Completed Lab 5 and Lab 9
+- Completed Lab 9 and Lab 10
 
 ## Task 1: Use OAC to Analyze the store_orders Dataset
 
