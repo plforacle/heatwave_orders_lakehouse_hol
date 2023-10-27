@@ -24,6 +24,8 @@ In this lab, you will be guided through the following tasks:
 
 ## Task 1: Install App Server (APACHE)
 
+**Important!!!** If you have already created your Lamp Sever on Lab 5, then skip to **Task 4: Create Google Chart Application to display Lakehouse data,**
+
 1. If not already connected with SSH, on Command Line, connect to the Compute instance using SSH ... be sure replace the  "private key file"  and the "new compute instance ip"
 
      ```bash
