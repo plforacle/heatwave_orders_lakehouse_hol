@@ -41,13 +41,13 @@ A set of files have been created for you to use in this workshop. You will creat
 3. Download sample files
 
     ```bash
-    <copy>wget https://objectstorage.us-ashburn-1.oraclecloud.com/p/nnsIBVX1qztFmyAuwYIsZT2p7Z-tWBcuP9xqPCdND5LzRDIyBHYqv_8a26Z38Kqq/n/mysqlpm/b/plf_mysql_customer_orders/o/lakehouse/lakehouse-order.zip</copy>
+    <copy>wget https://objectstorage.us-ashburn-1.oraclecloud.com/p/LxLnDzC-D9m_o-cAFHWQCWw5AkPk53WkXllQ9o_JVtpyucKqScImHLr2k_QthkVN/n/mysqlpm/b/mysql_customer_orders/o/lakehouse/lakehouse-order-v2.zip</copy>
      ```
 
 4. Unzip lakehouse-order.zip file which will generate folder datafiles with 4 files
 
     ```bash
-    <copy>unzip lakehouse-order.zip</copy>
+    <copy>unzip lakehouse-order-v2.zip</copy>
      ```
 
 5. Go into the lakehouse/datafiles folder and list all of the files
