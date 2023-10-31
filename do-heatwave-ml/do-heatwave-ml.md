@@ -6,17 +6,15 @@
 
 HeatWave ML makes it easy to use machine learning, whether you are a novice user or an experienced ML practitioner. You provide the data, and HeatWave AutoML analyzes the characteristics of the data and creates an optimized machine learning model that you can use to generate predictions and explanations. An ML model makes predictions by identifying patterns in your data and applying those patterns to unseen data. HeatWave ML explanations help you understand how predictions are made, such as which features of a dataset contribute most to a prediction.
 
-To load the Aiport Delay data components, perform the following steps to create and load the required schema and tables. The requirements for Python 3 are already loaded in the compute instance and you have already installed MySQL Shell in the previous Lab.
+To load the black_friday data components, perform the following steps to create and load the required schema and tables. The requirements for Python 3 are already loaded in the compute instance and you have already installed MySQL Shell in the previous Lab.
 
 After this step the data is stored in the MySQL HeatWave database in the following schema and tables:
 
-**FLIGHTS\_BTS\_DELAY schema:** The schema containing training and test dataset tables.
+**heatwaveml\_bench schema:** The schema containing training and test dataset tables.
 
-**bts\_airport\_delay\_train table:** The training dataset (labeled). Includes feature columns (OPER\_CARRIER, MONTH, ORIGIN\_AIRPORT,  SCHEDULED\_DEPT\_TIME, AVG\_MINUTES\_LATE) and a populated class target column with ground truth values.
+**black\_friday\_train table:** The training dataset. Includes feature columns (Gender,Age,Occupation,City\_Category,Stay\_In\_Current\_City\_Years,Marital\_Status,Product\_Category\_1,Product\_Category\_2,Product\_Category\_3,Purchase).
 
-**bts\_airport\_delay\_test table:** The test dataset (unlabeled). Includes feature columns ( MONTH, ORIGIN\_AIRPORT,  SCHEDULED\_DEPT\_TIME, AVG_MINUTES\_LATE) but no target column.
-
-**bts\_airport\_delay\_validate table:** The validation dataset (labeled). Includes feature columns (OPER\_CARRIER, MONTH, ORIGIN\_AIRPORT,  SCHEDULED\_DEPT\_TIME, AVG\_MINUTES\_LATE) and a populated class target column with ground truth values.
+**black\_friday\_test table:** The test dataset (unlabeled). Includes feature columns (Gender,Age,Occupation,City\_Category,Stay\_In\_Current\_City\_Years,Marital\_Status,Product\_Category\_1,Product\_Category\_2,Product\_Category\_3,Purchase).
 
 _Estimated Time:_ 10 minutes
 
@@ -24,131 +22,117 @@ _Estimated Time:_ 10 minutes
 
 In this lab, you will be guided through the following task:
 
-- Load airport Data into HeatWave
-- Train ML model
+- Download and unzip blac_friday files
+- Create ML Data
+- Train the machine learning model
+- Predict and Explain for Single Row
+- Score your machine learning model to assess its reliability and unload the model
+
 
 ### Prerequisites
 
 - An Oracle Trial or Paid Cloud Account
 - Some Experience with MySQL Shell
-- Completed Lab 4
+- Completed Lab 3
 
-## Task 1: Connect MySQL Shell:
+## Task 1: Download and unzip  Sample files
 
-1. If not already connected then connect to OCI Shell
+1. If not already connected with SSH, on Command Line, connect to the Compute instance using SSH ... be sure replace the  "private key file"  and the "new compute instance ip"
 
-2. On the command line, connect to MySQL using the MySQL Shell client tool with the following command:
+     ```bash
+    <copy>ssh -i private_key_file opc@new_compute_instance_ip</copy>
+     ```
+
+2. Setup folder to house imported sample data
+
+    a. Create folder
 
     ```bash
-    <copy>mysqlsh -uadmin -p -h 10.... -P3306 --sql </copy>
+    <copy>mkdir automl</copy>
+     ```
+
+    b. Go into folder
+
+    ```bash
+    <copy>cd automl</copy>
+     ```
+
+3. Download sample files
+
+    ```bash
+    <copy>wget https://objectstorage.us-ashburn-1.oraclecloud.com/p/Ukv1g5qyvJK6asGvVoksGkUDIu8KaoVfmbhBzpmbRahXu7a2EmaVTJev2a-lHvUa/n/mysqlpm/b/mysql_customer_orders/o/black_friday.zip</copy>
+     ```
+
+4. Unzip black_friday.zip file which will generate 2 files
+
+    ```bash
+    <copy>unzip black_friday.zip</copy>
+     ```
+
+5. List all of the files
+
+    ```bash
+    <copy>ls -l</copy>
     ```
 
-    ![Connect](./images/heatwave-load-shell.png "heatwave-load-shell ")
+    ![bucket file list](./images/list_data_files.png "datafiles list")
 
 ## Task 2: Create ML Data
 
-1. To Create the Machine Learning schema and tables on the MySQL HeatWave DB System perform the following steps :
+1. If not already connected to MySQL then connect to MySQL using the MySQL Shell client tool with the following command:
+
+    ```bash
+    <copy>mysqlsh -uadmin -p -h 10.0.1... --sql -P3306</copy>
+    ```
+
+    ![MySQL Shell Connect](./images/mysql-shell-login.png " mysql shell login")
+2. To Create the Machine Learning schema and tables on the MySQL HeatWave DB System perform the following steps :
 
     a. Create the ML database :
 
     ```bash
-    <copy>CREATE SCHEMA FLIGHTS_BTS_DELAY;</copy>
+    <copy>CREATE DATABASE heatwaveml_bench;</copy>
     ```
 
     b. Set new database as default :
 
     ```bash
-    <copy>use FLIGHTS_BTS_DELAY;</copy>
+    <copy>USE heatwaveml_bench;</copy>
     ```
 
     c. Create train table :
 
     ```bash
-    <copy>CREATE TABLE `bts_airport_delay_train` (
-  `OPER_CARRIER` varchar(255) DEFAULT NULL,
-  `MONTH` varchar(255) DEFAULT NULL,
-  `ORIGIN_AIRPORT` varchar(255) DEFAULT NULL,
-  `SCHEDULED_DEPT_TIME` int DEFAULT NULL,
-  `AVG_MINUTES_LATE` float DEFAULT '0'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-</copy>
+    <copy>CREATE TABLE black_friday_train (Gender VARCHAR(255), Age VARCHAR(255), Occupation VARCHAR(255), City_Category VARCHAR(255), Stay_In_Current_City_Years VARCHAR(255), Marital_Status VARCHAR(255), Product_Category_1 VARCHAR(255), Product_Category_2 VARCHAR(255), Product_Category_3 VARCHAR(255), Purchase FLOAT);</copy>
     ```
-    d. Load data into train table : 
-    [BTS raw data origin] (https://www.bts.gov/topics/airlines-and-airports/june-2022-regularly-scheduled-flights-more-50-delayed-arrivals-more-30)
+
+    d. Create test table :
 
     ```bash
-    <copy>INSERT INTO  FLIGHTS_BTS_DELAY.bts_airport_delay_train 
-SELECT OPER_CARRIER, bts_raw_data.MONTH,
-ORIGIN_AIRPORT,  SCHEDULED_DEPT_TIME, AVG_MINUTES_LATE
-from  airportdb.bts_raw_data where id >= 1001;</copy>
+    <copy>CREATE TABLE black_friday_test LIKE black_friday_train;</copy>
     ```
-    e. Create test table :
+
+    e. Load train table
 
     ```bash
-    <copy>CREATE TABLE `bts_airport_delay_test` (
-  `OPER_CARRIER` varchar(255) DEFAULT NULL,
-  `MONTH` varchar(255) DEFAULT NULL,
-  `ORIGIN_AIRPORT` varchar(255) DEFAULT NULL,
-  `SCHEDULED_DEPT_TIME` int DEFAULT NULL,
-  `AVG_MINUTES_LATE` float DEFAULT '0'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;</copy>
-    ```
-    f. Load data into test table  :
-
-    ```bash
-    <copy>INSERT INTO  FLIGHTS_BTS_DELAY.bts_airport_delay_test
-SELECT OPER_CARRIER, bts_raw_data.MONTH, 
-ORIGIN_AIRPORT,  SCHEDULED_DEPT_TIME, AVG_MINUTES_LATE
-from  airportdb.bts_raw_data where id < 1001;</copy>
-    ```
-   g. Create validate  table :
-
-    ```bash
-    <copy>CREATE TABLE `bts_airport_delay_validate` (
-  `OPER_CARRIER` varchar(255) DEFAULT NULL,
-  `MONTH` varchar(255) DEFAULT NULL,
-  `ORIGIN_AIRPORT` varchar(255) DEFAULT NULL,
-  `SCHEDULED_DEPT_TIME` int DEFAULT NULL,
-  `AVG_MINUTES_LATE` float DEFAULT '0'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;</copy>
-    ```
-    h. Load validate table :
-
-    ```bash
-    <copy>INSERT INTO  FLIGHTS_BTS_DELAY.bts_airport_delay_validate
-SELECT OPER_CARRIER, bts_raw_data.MONTH, 
-ORIGIN_AIRPORT,  SCHEDULED_DEPT_TIME, AVG_MINUTES_LATE
-from  airportdb.bts_raw_data where id < 1001;</copy>
-    ```
-    i. Remove labeled column from test table:
-
-    ```bash
-    <copy>ALTER TABLE FLIGHTS_BTS_DELAY.bts_airport_delay_test DROP COLUMN OPER_CARRIER;</copy>
-    ```
-    j. Drop target variables with less than 5 values :
-
-    ```bash
-    <copy>select OPER_CARRIER, count(OPER_CARRIER ) from bts_airport_delay_train group by OPER_CARRIER;</copy>
+    <copy>\js</copy>
     ```
 
     ```bash
-    <copy>delete  from bts_airport_delay_train  where OPER_CARRIER in ("ENDEAVOR", "HAWAIIAN", "PIEDMONT");</copy>
+    <copy>util.importTable("black_friday_train.csv",{table: "black_friday_train", dialect: "csv-unix", skipRows:1})</copy>
     ```
-    k. Review delete action :
+
+    f. Load test table
 
     ```bash
-    <copy>select OPER_CARRIER, count(OPER_CARRIER ) from bts_airport_delay_train group by OPER_CARRIER;</copy>
+    <copy>util.importTable("black_friday_test.csv",{table: "black_friday_test", dialect: "csv-unix", skipRows:1})</copy>
     ```
-
-2. View the content of  your machine Learning schema (ml_data)
-
-    a.
 
     ```bash
-    <copy>use FLIGHTS_BTS_DELAY;</copy>
+    <copy>\sql</copy>
     ```
 
-    b.
+3. View the content of  your machine Learning schema (ml_data)
 
     ```bash
     <copy>show tables; </copy>
@@ -159,10 +143,10 @@ from  airportdb.bts_raw_data where id < 1001;</copy>
 1. Train the model using ML_TRAIN. Since this is a classification dataset, the classification task is specified to create a classification model:
 
     ```bash
-    <copy>CALL sys.ML_TRAIN('FLIGHTS_BTS_DELAY.bts_airport_delay_train','OPER_CARRIER',JSON_OBJECT('task','classification'),@airport_model);</copy>
+    <copy>CALL sys.ML_TRAIN('heatwaveml_bench.black_friday_train', 'Purchase', JSON_OBJECT('task', 'regression'), @model_black_friday);</copy>
     ```
 
-2. When the training operation finishes, the model handle is assigned to the @airport_model session variable, and the model is stored in your model catalog. You can view the entry in your model catalog using the following query, where user1 is your MySQL account name:
+2. When the training operation finishes, the model handle is assigned to the @model_black_friday session variable, and the model is stored in your model catalog. You can view the entry in your model catalog using the following query, where user1 is your MySQL account name:
 
     ```bash
     <copy>SELECT model_id, model_handle, train_table_name FROM ML_SCHEMA_admin.MODEL_CATALOG;</copy>
@@ -173,23 +157,18 @@ from  airportdb.bts_raw_data where id < 1001;</copy>
     a.  Reset model handle variable
 
     ```bash
-    <copy>SET @airline_model = (SELECT model_handle FROM ML_SCHEMA_admin.MODEL_CATALOG   ORDER BY model_id DESC LIMIT 1);</copy>
+    <copy>SET @model_black_friday = (SELECT model_handle FROM ML_SCHEMA_admin.MODEL_CATALOG   ORDER BY model_id DESC LIMIT 1); </copy>
     ```
 
     b. A model must be loaded before you can use it. The model remains loaded until you unload it or the HeatWave Cluster is restarted.
 
     ```bash
-    <copy>CALL sys.ML_MODEL_LOAD(@airline_model, NULL);</copy>
+    <copy>CALL sys.ML_MODEL_LOAD(@model_black_friday, NULL);</copy>
     ```
 
-    ```bash
-    <copy>select @airline_model;</copy>
-    ```
+## Task 4: Predict and Explain for test table
 
-## Task 4: Predict and Explain for Single Row
-
-1. Make a prediction for a single row of data using the ML\_PREDICT\_ROW routine.
-In this example, data is assigned to a @row\_input session variable, and the variable is called by the routine. The model handle is called using the @airport\_model session variable:
+1. Make a prediction for the test table  data using the ML\_PREDICT\_ROW routine.
 
     ```bash
     <copy>SET @airline_input = JSON_OBJECT('MONTH', 'Oct', 'ORIGIN_AIRPORT', 'MIA', 'SCHEDULED_DEPT_TIME', 1800, 'AVG_MINUTES_LATE', 0);  </copy>
