@@ -203,7 +203,7 @@ In this lab, you will be guided through the following task:
 2. To retrieve the computed score, query the @score session variable
 
     ```bash
-    <copy>SELECT @score;</copy>
+    <copy>SELECT @score_black_friday;</copy>
     ```
 
 3. Unload the model using ML\_MODEL\_UNLOAD:
