@@ -1,5 +1,5 @@
 {
-  "workshoptitle": "MySQL HeatWave Hands-On-Lab",
+  "workshoptitle": "Heatwave-All: Build MySQL HeatWave OLTP, OLAP, Lakehouse, AUTOML, OAC, and APEX",
     "help": "livelabs-help-oci_us@oracle.com",
     "tutorials": [
         {
@@ -56,12 +56,37 @@
         },
 
         {
-          "title": "Lab 9: (Bonus) Create and Use HeatWave AutoML Model - black_friday  ",
+          "title": "Lab 9: (Bonus) Create Oracle Analytics Cloud Instance",
+          "filename": "../../create-oac-instance/create-oac-instance.md"  
+        },
+           
+        {
+          "title": "Lab 10: (Bonus) Create datasets in Oracle Analytics Cloud ",
+          "filename": "../../create-oac-dataset/create-oac-dataset.md"
+        },
+
+        {
+          "title": "Lab 11: (Bonus) Build a real-time dashboard in Oracle Analytics Cloud with MySQL HeatWave ",
+          "filename": "../../visualize-oac/visualize-oac.md"
+        },
+
+        {
+          "title": "Lab 12: (Bonus) Develop MySQL HeatWave and Lakehouse Apps with LAMP",
+          "filename": "../../develop-lakehouse/develop-lakehouse.md"
+        }, 
+
+        {
+          "title": "Lab 13: (Bonus) Create and Use HeatWave AutoML Model - black_friday  ",
           "filename": "../../do-heatwave-ml/do-heatwave-ml.md"
         }, 
 
         {
-          "title": "Lab 10: Stop OCI Services",
+          "title": "Lab 14: (Bonus)  Develop MySQL HeatWave Apps with Oracle APEX",
+          "filename": "../../apex-heatwave/apex-heatwave.md"
+        }, 
+        
+        {
+          "title": "Lab 15: Stop OCI Services",
           "filename": "../../stop-services/stop-services.md"
         },
 

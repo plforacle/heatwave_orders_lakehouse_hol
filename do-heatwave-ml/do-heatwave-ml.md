@@ -25,7 +25,7 @@ In this lab, you will be guided through the following task:
 - Download and unzip blac_friday files
 - Create ML Data
 - Train the machine learning model
-- Predict and Explain for Single Row
+- Predict and Explain using the test table
 - Score your machine learning model to assess its reliability and unload the model
 
 
@@ -171,26 +171,33 @@ In this lab, you will be guided through the following task:
 1. Make a prediction for the test table  data using the ML\_PREDICT\_ROW routine.
 
     ```bash
-    <copy>SET @airline_input = JSON_OBJECT('MONTH', 'Oct', 'ORIGIN_AIRPORT', 'MIA', 'SCHEDULED_DEPT_TIME', 1800, 'AVG_MINUTES_LATE', 0);  </copy>
+    <copy>CALL sys.ML_PREDICT_TABLE('heatwaveml_bench.black_friday_test', @model_black_friday,'heatwaveml_bench.black_predictions',NULL);</copy>
     ```
+
+2. To retrieve the some of the predictions
 
     ```bash
-    <copy>SELECT sys.ML_PREDICT_ROW(@airline_input, @airline_model,null);</copy>
+    <copy>SELECT * FROM heatwaveml_bench.black_predictions limit 5\G</copy>
     ```
 
-2. Generate an explanation for the same row of data using the ML\_EXPLAIN\_ROW routine to understand how the prediction was made:
+3. Generate an explanation for the same row of data using the ML\_EXPLAIN\_ROW routine to understand how the prediction was made:
 
     ```bash
-    <copy>SELECT JSON_PRETTY(sys.ML_EXPLAIN_ROW(@airline_input, @airline_model, JSON_OBJECT('prediction_explainer', 'permutation_importance')));</copy>
+    <copy> CALL sys.ML_EXPLAIN_TABLE('heatwaveml_bench.black_friday_test', @model_black_friday, 'heatwaveml_bench.black_explanations', JSON_OBJECT('prediction_explainer', 'permutation_importance'));</copy>
     ```
 
+4. To retrieve the some of the expalnations
+
+    ```bash
+    <copy>SELECT * FROM heatwaveml_bench.black_explanations limit 5\G</copy>
+    ```
 
 ## Task 5: Score your machine learning model to assess its reliability and unload the model
 
 1. Score the model using ML\_SCORE to assess the model's reliability. This example uses the accuracy metric, which is one of the many scoring metrics supported by HeatWave ML.
 
     ```bash
-    <copy>CALL sys.ML_SCORE('FLIGHTS_BTS_DELAY.bts_airport_delay_train', 'OPER_CARRIER', @airline_model, 'accuracy', @score,null);</copy>
+    <copy> CALL sys.ML_SCORE('heatwaveml_bench.black_friday_test', 'Purchase', @model_black_friday, 'r2', @score_black_friday, null);</copy>
     ```
 
 2. To retrieve the computed score, query the @score session variable
@@ -202,7 +209,7 @@ In this lab, you will be guided through the following task:
 3. Unload the model using ML\_MODEL\_UNLOAD:
 
     ```bash
-    <copy>CALL sys.ML_MODEL_UNLOAD(@airport_model);</copy>
+    <copy>CALL sys.ML_MODEL_UNLOAD(@model_black_friday);</copy>
     ```
 
     To avoid consuming too much space, it is good practice to unload a model when you are finished using it.
@@ -220,4 +227,4 @@ You may now **proceed to the next lab**
 
 - **Contributors** - Salil Pradhan, Principal Product Manager,
 Nick Mader, MySQL Global Channel Enablement & Strategy Manager
-- **Last Updated By/Date** - Perside Foster, MySQL Solution Engineering, May 2022
+- **Last Updated By/Date** - Perside Foster, MySQL Solution Engineering, October 2023
