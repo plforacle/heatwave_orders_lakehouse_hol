@@ -88,6 +88,34 @@ In this lab, you will be guided through the following task:
 
     ![Databse Tables](./images/mysql-customer-orders-list.png "mysql customer orders list")
 
+6. Run OLTP Query in MySQL
+
+    ```bash
+    <copy>use mysql_customer_orders;</copy>
+    ```
+
+    ```bash
+    <copy>SELECT * FROM stores limit 10;</copy>
+    ```
+
+7. Run OLAP Query in MySQL
+
+    ```bash
+    <copy>select `o`.`ORDER_ID` AS `order_id`,`o`.`ORDER_DATETIME` AS `ORDER_DATETIME`,
+    `o`.`ORDER_STATUS` AS `order_status`, `c`.`CUSTOMER_ID` AS `customer_id`,
+    `c`.`EMAIL_ADDRESS` AS `email_address`,`c`.`FULL_NAME`  AS `full_name`,
+    sum((`oi`.`QUANTITY` * `oi`.`UNIT_PRICE`)) AS `order_total`,
+    `p`.`PRODUCT_NAME` AS `product_name`,`oi`.`LINE_ITEM_ID` AS `LINE_ITEM_ID`,
+    `oi`.`QUANTITY`  AS `QUANTITY`,`oi`.`UNIT_PRICE` AS `UNIT_PRICE` 
+from (((`orders` `o` join `order_items` `oi` on((`o`.`ORDER_ID` = `oi`.`ORDER_ID`))) 
+    join `customers` `c` on((`o`.`CUSTOMER_ID` = `c`.`CUSTOMER_ID`))) 
+    join `products` `p` on((`oi`.`PRODUCT_ID` = `p`.`PRODUCT_ID`))) 
+group by `o`.`ORDER_ID`,`o`.`ORDER_DATETIME`,`o`.`ORDER_STATUS`,`c`.`CUSTOMER_ID`
+    ,`c`.`EMAIL_ADDRESS` ,`c`.`FULL_NAME`,`p`.`PRODUCT_NAME`
+    ,`oi`.`LINE_ITEM_ID`,`oi`.`QUANTITY`,`oi`.`UNIT_PRICE` limit 10;</copy>
+    ```
+    **Note** It takes a while to execute
+
 ## Task 2: Add a HeatWave Cluster to heatwave-db MySQL Database System
 
 1. Go to Navigation Menu
